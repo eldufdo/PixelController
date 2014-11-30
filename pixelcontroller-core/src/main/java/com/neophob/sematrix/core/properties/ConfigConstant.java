@@ -33,6 +33,7 @@ public final class ConfigConstant {
 	/** The Constant RAINBOWDUINO_V2_ROW1. */
 	public static final String RAINBOWDUINO_V2_ROW1 = "layout.row1.i2c.addr";
 	
+        
 	/** The Constant RAINBOWDUINO_V2_ROW2. */
 	public static final String RAINBOWDUINO_V2_ROW2 = "layout.row2.i2c.addr";
 	
@@ -50,6 +51,11 @@ public final class ConfigConstant {
 	/** The Constant NULLOUTPUT_ROW2. */
 	public static final String NULLOUTPUT_ROW2 = "nulloutput.devices.row2";
 
+        /** The Constant Custom Ethernet. */
+	public static final String CUSTOM_ETHERET_IP = "customethernet.ip";
+	public static final String CUSTOM_ETHERNET_PORT = "customethernet.port";	
+	
+        
 	/** The Constant ARTNET_IP. */
 	public static final String ARTNET_IP = "artnet.ip";
 	public static final String ARTNET_PIXELS_PER_UNIVERSE = "artnet.pixels.per.universe";	

@@ -28,6 +28,9 @@ public enum OutputDeviceEnum {
 	
 	/** The Element STEALTH LED PANELS. */
 	STEALTH(StealthDevice.class, true),
+	
+	/** ELDUFDO ethernet led matrix. */
+	CustomEthernet(CustomEthernetDevice.class, true),
 
 	/** The RAINBOWDUINO_V2. */
 	RAINBOWDUINO_V2(RainbowduinoV2Device.class, true),

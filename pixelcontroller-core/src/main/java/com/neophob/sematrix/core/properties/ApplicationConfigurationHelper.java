@@ -124,6 +124,8 @@ public class ApplicationConfigurationHelper {
         this.config = config;
         
         int nullDevices = parseNullOutputAddress();
+        int customEthernetDevices = parseCustomEthernet();
+        LOG.log(Level.INFO,"Found "+customEthernetDevices + " custom ethernet devices baby");
         int rainbowduinoV2Devices = parseI2cAddress();
         int rainbowduinoV3Devices = parseRainbowduinoV3Config();
         int pixelInvadersDevices = parsePixelInvaderConfig();
@@ -207,6 +209,13 @@ public class ApplicationConfigurationHelper {
             LOG.log(Level.INFO, "found UDP device: "+totalDevices);
             this.outputDeviceEnum = OutputDeviceEnum.UDP;
         } 
+        if (customEthernetDevices > 0) {
+            enabledOutputs++;
+            devicesInRow1++;
+            totalDevices = customEthernetDevices;
+            LOG.log(Level.INFO, "found customEthernet device: "+totalDevices);
+            this.outputDeviceEnum = OutputDeviceEnum.CustomEthernet;
+        }
         if (nullDevices > 0) {
             //enable null output only if configured AND no other output is enabled.
         	if (enabledOutputs==0) {
@@ -623,6 +632,28 @@ public class ApplicationConfigurationHelper {
         }
 
         return i2cAddr.size();
+    }
+    
+    /**
+     * Parses the i2c address.
+     *
+     * @return the int
+     */
+    private int parseCustomEthernet() {
+        ArrayList<Integer> ipAddr = new ArrayList<Integer>();
+        boolean found = false;
+        String rawConfig = config.getProperty(ConfigConstant.CUSTOM_ETHERET_IP);
+        if (StringUtils.isNotBlank(rawConfig)) {
+            System.out.println("Found ip --> " + rawConfig);
+            found = true;
+            deviceXResolution = 16;
+            deviceYResolution = 16;
+        }
+        rawConfig = config.getProperty(ConfigConstant.CUSTOM_ETHERNET_PORT);
+        if (StringUtils.isNotBlank(rawConfig)) {
+            System.out.println("Found port --> " + rawConfig);
+        }
+        return found ? 1 : 0;
     }
     
     /**

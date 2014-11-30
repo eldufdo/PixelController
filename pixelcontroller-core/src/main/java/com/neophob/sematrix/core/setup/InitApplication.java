@@ -31,6 +31,7 @@ import com.neophob.sematrix.core.glue.Collector;
 import com.neophob.sematrix.core.glue.FileUtils;
 import com.neophob.sematrix.core.glue.Shuffler;
 import com.neophob.sematrix.core.output.ArtnetDevice;
+import com.neophob.sematrix.core.output.CustomEthernetDevice;
 import com.neophob.sematrix.core.output.E1_31Device;
 import com.neophob.sematrix.core.output.MiniDmxDevice;
 import com.neophob.sematrix.core.output.NullDevice;
@@ -106,6 +107,9 @@ public abstract class InitApplication {
 		Output output = null;
 		try {
 			switch (outputDeviceEnum) {
+                        case CustomEthernet:
+                                output = new CustomEthernetDevice(applicationConfig);
+                                break;
 			case PIXELINVADERS:
 				output = new PixelInvadersSerialDevice(applicationConfig, collector.getNrOfScreens());
 				break;
